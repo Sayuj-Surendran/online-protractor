@@ -1,30 +1,80 @@
-const line = document.getElementById("line");
-const angleText = document.getElementById("angle");
+const upload=document.getElementById("upload");
+const imagePreview=document.getElementById("imagePreview");
 
-let dragging = false;
+const protractor=document.getElementById("protractor");
 
-line.addEventListener("touchstart",()=>{
-    dragging=true;
+let rotation=0;
+
+upload.addEventListener("change",(e)=>{
+
+const file=e.target.files[0];
+
+if(!file) return;
+
+imagePreview.src=URL.createObjectURL(file);
+
+imagePreview.style.display="block";
+
 });
 
-document.addEventListener("touchend",()=>{
-    dragging=false;
+document.getElementById("rotateLeft")
+.addEventListener("click",()=>{
+
+rotation-=5;
+
+protractor.style.transform=
+`rotate(${rotation}deg)`;
+
 });
 
-document.addEventListener("touchmove",(e)=>{
-    if(!dragging) return;
+document.getElementById("rotateRight")
+.addEventListener("click",()=>{
 
-    let rect=line.parentElement.getBoundingClientRect();
+rotation+=5;
 
-    let cx=rect.left+175;
-    let cy=rect.top+170;
+protractor.style.transform=
+`rotate(${rotation}deg)`;
 
-    let x=e.touches[0].clientX-cx;
-    let y=e.touches[0].clientY-cy;
+});
 
-    let angle=Math.atan2(y,x)*180/Math.PI;
+document.getElementById("resetBtn")
+.addEventListener("click",()=>{
 
-    line.style.transform=`rotate(${angle}deg)`;
+rotation=0;
 
-    angleText.innerText=Math.round(angle);
+protractor.style.transform=
+`rotate(0deg)`;
+
+});
+
+let dragging=false;
+
+let offsetX=0;
+let offsetY=0;
+
+protractor.addEventListener("pointerdown",(e)=>{
+
+dragging=true;
+
+offsetX=e.offsetX;
+offsetY=e.offsetY;
+
+});
+
+document.addEventListener("pointermove",(e)=>{
+
+if(!dragging) return;
+
+protractor.style.left=
+(e.pageX-offsetX)+"px";
+
+protractor.style.top=
+(e.pageY-offsetY)+"px";
+
+});
+
+document.addEventListener("pointerup",()=>{
+
+dragging=false;
+
 });
