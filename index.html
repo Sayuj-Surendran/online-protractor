@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Online Protractor</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Online Protractor</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>Online Protractor</h1>
-
 <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Protractor.svg/800px-Protractor.svg.png"
-         id="protractor">
 
-    <div id="line"></div>
+<h1>📐 Online Protractor</h1>
+
+<p>Upload an image and measure angles easily</p>
+
+<input type="file" id="upload" accept="image/*">
+
+<div id="workspace">
+
+<img id="imagePreview">
+
+<img
+id="protractor"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Protractor.svg/800px-Protractor.svg.png">
+
 </div>
 
-<p>Drag the red line to measure angle</p>
-<p>Angle: <span id="angle">0</span>°</p>
+<div class="controls">
+
+<button id="rotateLeft">↺</button>
+
+<button id="rotateRight">↻</button>
+
+<button id="resetBtn">Reset</button>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
