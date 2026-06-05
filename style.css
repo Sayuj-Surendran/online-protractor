@@ -1,0 +1,25 @@
+body{
+    text-align:center;
+    font-family:Arial;
+}
+
+.container{
+    position:relative;
+    width:350px;
+    margin:auto;
+}
+
+#protractor{
+    width:100%;
+}
+
+#line{
+    position:absolute;
+    width:150px;
+    height:4px;
+    background:red;
+    top:170px;
+    left:100px;
+    transform-origin:left center;
+    transform:rotate(0deg);
+}
